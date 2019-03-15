@@ -1,0 +1,140 @@
+<!-- Boilerplate Flex-->
+<!--Create Date: 03/14/2019 [insert notes] -->
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jump Bikes</title>
+  <!-- CSS Links -->
+  <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/reset.css">
+  <link rel="stylesheet" ype="text/css" media="screen"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/jump.css">
+</head>
+<body> 
+    
+      <!-- Main Bootstrap Search -->
+      <div class="container">
+    
+        <!-- Jumbotron for Title -->
+        <div class="card" style="background-color: #20315A ; color: white;">
+          <h1 class="text-center">
+            <strong>
+              <i class="fa fa-newspaper-o"></i> Jump Bike Search</strong>
+          </h1>
+        </div>
+    
+        <!-- Row for Searching New York Times -->
+        <div class="row">
+          <div class="col-sm-12">
+            <br>
+            <!-- First card is for handling the search parameters -->
+            <div class="card">
+              <div class="card-header">
+                <strong>
+                  <i class="fa fa-list-alt"></i> Search Parameters</strong>
+              </div>
+              <div class="card-body">
+    
+                <!-- Here we create an HTML Form for handling the inputs-->
+                <form role="form">
+    
+                  <!-- Here we create the text box for capturing the search term-->
+                  <div class="form-group">
+                    <label for="search">Search Term:</label>
+                    <input type="text" class="form-control" id="search-term">
+                  </div>
+    
+                  <!-- Here we capture the number of records that the user wants to retrieve  -->
+                  <div class="form-group">
+                    <label for="pwd">Number of Records to Retrieve:</label>
+                    <select id="article-count" class="custom-select" aria-labelledby="dropdownMenuButton">
+                      <option selected value="1">1</option>
+                      <!-- Setting the option for 5 as default -->
+                      <option value="5" selected>5</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+    
+                  <!-- Here we capture the Start Year Parameter-->
+                  <div class="form-group">
+                    <label for="start-year">Start Year (Optional):</label>
+                    <input type="text" class="form-control" id="start-year">
+                  </div>
+    
+                  <!-- Here we capture the End Year Parameter -->
+                  <div class="form-group">
+                    <label for="end-year">End Year (Optional):</label>
+                    <input type="text" class="form-control" id="end-year">
+                  </div>
+    
+                  <!-- Here we have our final submit button -->
+                  <button type="submit" class="btn btn-default" id="run-search">
+                    <i class="fa fa-search"></i> Search</button>
+                  <button class="btn btn-default" id="clear-all">
+                    <i class="fa fa-trash"></i> Clear Results</button>
+    
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <!-- This row will handle all of the retrieved articles -->
+        <div class="row">
+          <div class="col-sm-12">
+            <br>
+    
+            <!-- This card will initially be made up of a card and wells for each of the articles retrieved -->
+            <div class="card">
+    
+  
+    
+              <!-- This main card will hold each of the resulting articles -->
+              <div class="card-header" id="card-h">Jump Bike Fleet<span id="last-update"></span></div>
+              <div class="card-body">
+                <table class="table table-sm table-hover" id='jump-bikes-view'>
+                  <thead>
+                    <tr>
+                      <!-- <th scope="col">Last Update</th> -->
+                      <th scope="col">Bike ID</th>
+                      <th scope="col">Bike Name</th>
+                      <th scope="col">Is Resr</th>
+                      <th scope="col">Is Disd</th>
+                      <th scope="col">Batt Lev</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">Lat</th>
+                      <th scope="col">Long</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Footer Region -->
+        <div class="footer">
+maybe footer info later
+        </div>
+    
+      </div>
+
+
+
+
+
+
+
+  <!-- JS Links -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <script src="./assets/js/jump.js"></script>
+</body>
+
+</html>
