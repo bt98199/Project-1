@@ -1,0 +1,16 @@
+.card-body a {
+    word-break: break-all;
+}
+
+.card-header {
+    font-weight: bold;
+}
+
+.articleHeadline {
+    line-height: 1.5;
+}
+
+.footer {
+    text-align: center;
+    font-weight:900 ;
+}
