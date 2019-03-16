@@ -152,7 +152,7 @@ require(['moment', 'chartjs'], function(moment, Chart) {
       addedTime += snapshot.val().time;
 //send the sum, to the chart
       addData(barChart, 19, addedTime);
-      console.log("This is the value of addedTime when we send it to chart: " + addedTime);
+      // console.log("This is the value of addedTime when we send it to chart: " + addedTime);
 
     });
 
@@ -196,17 +196,69 @@ $("#quoteButton").on("click", function() {
 });
 
 
-// Google map api init. Location default is UM Bootcamp location - Allen Hall
+// Google map api init. Default is UW Continuing Ed but should get overwritten by user position later. For performance reasons we might try to just center on user position from the jump.
 function initMap () {
-  var home = { lat: 47.609189, lng: -122.334249};
-  var bike1 = {lat: 47.6089, lng: -122.3348};
-  var bike2 = {lat: 47.610144, lng: -122.336674};
-  var bike3 = {lat: 47.610355, lng: -122.33747};
-  var bike4 = {lat: 47.611, lng: -122.34};
-    var map = new google.maps.Map(document.getElementById('trafficSection'), {
-        zoom: 17,
-        center: home,
-      });
+  const home  = {lat: 47.609189, lng: -122.334249};
+  const mapOptions = {
+    zoom: 17,
+    center: home,
+  }
+  const icon = {
+    url: "./assets/images/bike2.png",
+    scaledSize: new google.maps.Size(40,40),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(0,0),
+    labelOrigin: new google.maps.Point(-5,-15),
+  };
+
+  const map = new google.maps.Map(document.getElementById('trafficSection'), mapOptions);
+  const queryURL = "https://sea.jumpbikes.com/opendata/free_bike_status.json";
+
+$.ajax({
+  url: queryURL,
+  method: "GET"
+})
+  .then(function(response) {
+    var results = response.data.bikes;
+    var datResults = response.last_updated;
+    
+    for (var i = 0; i < results.length; i++) {
+      let bikeId = results[i].bike_id;
+      let bikeName = results[i].name;
+      // let isReserved = results[i].is_reserved;
+      // let isDisabled = results[i].ios_reserved;
+      let batteryLevel = results[i].jump_ebike_battery_level;
+      // let vehicleType = results[i].jump_vehicle_type;
+      let bikeLat = parseInt(100000*results[i].lat) / 100000;
+      let bikeLong = parseInt(100000*results[i].lon) / 100000;
+
+      function addMarker () {
+        var marker = new google.maps.Marker({
+          position: {lat: bikeLat, lng: bikeLong},
+          map:map,
+          icon:icon,
+          title:bikeName,
+          // label: "Battery: " + batteryLevel,
+          label: {
+            text: "Battery: " + batteryLevel,
+            color: "#b1599f",
+            fontSize: "16px",
+            fontWeight: "bold",
+            labelInBackground: false,
+            labelClass: "labels",
+  
+          },
+          });
+      };
+
+      addMarker(results[i]);
+      console.log(results[i]);
+      console.log(batteryLevel);
+    };
+  });
+  
+ 
+
 
       //traffic layer functionality.
       var trafficLayer = new google.maps.TrafficLayer();
@@ -231,38 +283,27 @@ function initMap () {
              map: map,
              title: "You are here"
            });
-           var x = new google.maps.Marker({
-            position: {
-              lat: bike1.lat,
-              lng: bike1.lng
-            },
-            map: map,
-            title: "BIKE 1"
-          });
-          var x = new google.maps.Marker({
-            position: {
-              lat: bike2.lat,
-              lng: bike2.lng
-            },
-            map: map,
-            title: "BIKE 2"
-          });
-          var x = new google.maps.Marker({
-            position: {
-              lat: bike3.lat,
-              lng: bike3.lng
-            },
-            map: map,
-            title: "BIKE 3"
-          });
-          var x = new google.maps.Marker({
-            position: {
-              lat: bike4.lat,
-              lng: bike4.lng
-            },
-            map: map,
-            title: "BIKE 4"
-          });
+
+ 
+          //  var bike1 = {
+          //   coords: {lat: 47.6089, lng: -122.3348},
+          //   title: "BIKE11111"
+          //       };
+          // var bike2 = {lat: 47.610144, lng: -122.336674};
+          // var bike3 = {lat: 47.610355, lng: -122.33747};
+          // var bike4 = {lat: 47.611, lng: -122.34};
+          // var bike5 = {lng: -122.39682833333333, lat: 47.64805166666667};
+          // //  var x = addMarker(bike1);
+  
+          // var x = new google.maps.Marker({
+          //   position: {
+          //     lat: bike5.lat,
+          //     lng: bike5.lng
+          //   },
+          //   map: map,
+          //   icon: icon,
+          //   title: "BIKE 5"
+          // });
 
     //  var directionsService = new google.maps.DirectionsService();
     //  var directionsDisplay = new google.maps.DirectionsRenderer();
@@ -286,11 +327,8 @@ function initMap () {
     //      }
     //    }
     //  );
-
-
-     directionsDisplay.setMap(map);
-
-    console.log(directionsDisplay);
+    // directionsDisplay.setMap(map);
+    // console.log(directionsDisplay);
 
      }, function () {
        console.log('Error in the geolocation service.');
