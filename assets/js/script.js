@@ -1,18 +1,18 @@
 $(document).ready(function() {
 
-  var x = document.getElementById("current-location");
+  var showLoc = document.getElementById("current-location");
 
   function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
-      x.innerHTML = "Geolocation is not supported by this browser.";
+      showLoc.innerHTML = "Geolocation is not supported by this browser.";
     }
   }
   
   function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;
+    showLoc.innerHTML = "Your Lat: " + position.coords.latitude + 
+    "<br>Your Long: " + position.coords.longitude;
   }
 getLocation();
 
@@ -21,14 +21,14 @@ function initMap () {
   const home  = {lat: 47.609189, lng: -122.334249};
   const mapOptions = {
     zoom: 17,
-    center: x,
+    center: home
   }
   const icon = {
     url: "./assets/images/bike2.png",
-    scaledSize: new google.maps.Size(40,40),
+    scaledSize: new google.maps.Size(20,20),
     origin: new google.maps.Point(0, 0),
     anchor: new google.maps.Point(0,0),
-    labelOrigin: new google.maps.Point(-5,-15),
+    labelOrigin: new google.maps.Point(-5,-5),
   };
 
   const map = new google.maps.Map(document.getElementById('trafficSection'), mapOptions);
@@ -41,12 +41,27 @@ $.ajax({
   .then(function(response) {
     var results = response.data.bikes;
     var datResults = response.last_updated;
-    
+    var styles = {
+      default: null,
+      hide: [
+        {
+          featureType: 'poi.business',
+          stylers: [{visibility: 'off'}]
+        },
+        {
+          featureType: 'transit',
+          elementType: 'labels.icon',
+          stylers: [{visibility: 'off'}]
+        }
+      ]
+    };
+    map.setOptions({styles: styles['hide']});
+
     for (var i = 0; i < results.length; i++) {
       let bikeId = results[i].bike_id;
       let bikeName = results[i].name;
       // let isReserved = results[i].is_reserved;
-      // let isDisabled = results[i].ios_reserved;
+      // let isDisabled = results[i].is_disabled;
       let batteryLevel = results[i].jump_ebike_battery_level;
       // let vehicleType = results[i].jump_vehicle_type;
       let bikeLat = parseInt(100000*results[i].lat) / 100000;
@@ -58,10 +73,9 @@ $.ajax({
           map:map,
           icon:icon,
           title:bikeName,
-          // label: "Battery: " + batteryLevel,
           label: {
             text: "Battery: " + batteryLevel,
-            color: "#b1599f",
+            color: "#000000",
             fontSize: "16px",
             fontWeight: "bold",
             labelInBackground: false,
@@ -70,13 +84,11 @@ $.ajax({
           },
           });
       };
-
       addMarker(results[i]);
       console.log(results[i]);
-      console.log(batteryLevel);
     };
+    $("#last-updated").append("  Last updated: " + moment(datResults*1000).format('LLL'));
   });
-
       if (navigator.geolocation) {
          navigator.geolocation.getCurrentPosition(function (position) {
            const user_location = {
@@ -96,7 +108,7 @@ $.ajax({
              map: map,
              title: "You are here"
            });
-
+        
      }, function () {
        console.log('Error in the geolocation service.');
      });
@@ -106,4 +118,5 @@ $.ajax({
 
      }
   initMap();
+
 });

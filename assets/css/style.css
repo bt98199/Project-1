@@ -1,6 +1,6 @@
 
 .labels {
-	color:#0c0b0c;
+	color:#000000;
 	font-weight: bold;
 	font-size: 2em;
 }
@@ -8,7 +8,7 @@
 
 #trafficSection{
 	width: 100%;
-	height: 900px;
+	height: 800px;
 	border-top: 8px solid black;
 	border-bottom: 8px solid black;
 	background-repeat: no-repeat;
