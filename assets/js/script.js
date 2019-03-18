@@ -1,11 +1,27 @@
 $(document).ready(function() {
 
+  var x = document.getElementById("current-location");
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+      x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
+  
+  function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;
+  }
+getLocation();
+
 // Google map api init. Default is UW Continuing Ed but should get overwritten by user position later. For performance reasons we might try to just center on user position from the jump.
 function initMap () {
   const home  = {lat: 47.609189, lng: -122.334249};
   const mapOptions = {
     zoom: 17,
-    center: home,
+    center: x,
   }
   const icon = {
     url: "./assets/images/bike2.png",
@@ -60,11 +76,6 @@ $.ajax({
       console.log(batteryLevel);
     };
   });
-  
-
-      //traffic layer functionality.
-      var trafficLayer = new google.maps.TrafficLayer();
-      trafficLayer.setMap(map);
 
       if (navigator.geolocation) {
          navigator.geolocation.getCurrentPosition(function (position) {
@@ -86,7 +97,6 @@ $.ajax({
              title: "You are here"
            });
 
- 
      }, function () {
        console.log('Error in the geolocation service.');
      });
@@ -95,8 +105,5 @@ $.ajax({
      }
 
      }
-
   initMap();
-
-
 });
