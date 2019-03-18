@@ -26,8 +26,8 @@ $(document).ready(function() {
           let isDisabled = results[i].ios_reserved;
           let batteryLevel = results[i].jump_ebike_battery_level;
           let vehicleType = results[i].jump_vehicle_type;
-          let bikeLat = parseInt(1000*results[i].lat) / 1000;
-          let bikeLong = parseInt(1000*results[i].lon) / 1000;
+          let bikeLat = parseInt(100000*results[i].lat) / 100000;
+          let bikeLong = parseInt(100000*results[i].lon) / 100000;
 
            // Create the new row
          var newRow = $("<tr>").append(
