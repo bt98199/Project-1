@@ -41,6 +41,7 @@ $.ajax({
   .then(function(response) {
     var results = response.data.bikes;
     var datResults = response.last_updated;
+    var bikeLayer = new google.maps.BicyclingLayer();
     var styles = {
       default: null,
       hide: [
@@ -56,6 +57,7 @@ $.ajax({
       ]
     };
     map.setOptions({styles: styles['hide']});
+    bikeLayer.setMap(map);
 
     for (var i = 0; i < results.length; i++) {
       let bikeId = results[i].bike_id;
