@@ -21,17 +21,18 @@ function initMap () {
   const home  = {lat: 47.60918, lng: -122.33424};
   const mapOptions = {
     zoom: 17,
-    center: home
-  }
+    center: home,
+    mapTypeId: "terrain"
+  };
   const icon = {
     url: "./assets/images/bike2.png",
     scaledSize: new google.maps.Size(20,20),
-    origin: new google.maps.Point(0, 0),
+    origin: new google.maps.Point(0,0),
     anchor: new google.maps.Point(0,0),
     labelOrigin: new google.maps.Point(-5,-5),
   };
 
-  const map = new google.maps.Map(document.getElementById('trafficSection'), mapOptions);
+  const map = new google.maps.Map(document.getElementById('map-section'), mapOptions);
   const queryURL = "https://sea.jumpbikes.com/opendata/free_bike_status.json";
 
 $.ajax({
@@ -69,12 +70,13 @@ $.ajax({
       let bikeLat = parseInt(100000*results[i].lat) / 100000;
       let bikeLong = parseInt(100000*results[i].lon) / 100000;
 
-      function addMarker () {
-        var marker = new google.maps.Marker({
+      function addMarkers () {
+        var markers = new google.maps.Marker({
           position: {lat: bikeLat, lng: bikeLong},
           map:map,
           icon:icon,
           title:bikeName,
+          class: "limeMarker",
           label: {
             text: "Battery: " + batteryLevel,
             color: "#000000",
@@ -86,7 +88,7 @@ $.ajax({
           },
           });
       };
-      addMarker(results[i]);
+      addMarkers(results[i]);
       console.log(results[i]);
     };
     $("#last-updated").append("  Last updated: " + moment(datResults*1000).format('LLL'));
@@ -119,6 +121,25 @@ $.ajax({
      }
 
      }
+      function clearMarkers() {
+      $(".limeMarker").hide();
+      
+      };
+      function showMarkers() {
+      $(".limeMarker").show(); 
+      };
+
+      // Removes the markers from the map, but keeps them in the array. NOT WORKING
+      $("#clear-markers").on("click", function() {
+        clearMarkers();
+      });
+      
+      // Shows any markers currently in the array.
+      $("#show-markers").on("click", function() {
+        showMarkers();
+      });
+
+
   initMap();
 
 });
