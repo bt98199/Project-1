@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    font-family: 'Oleo Script', cursive;
   }
   video { 
       position: fixed;
@@ -20,8 +20,9 @@ body {
   #bikePicture {
       width: 400px;
       border-radius:50%;
-      margin-top:80px;
-      margin-bottom: 20px;
+      margin-top:200px;
+     
+      margin-bottom: 20px
   }
  #startButton {
      padding: 15px 80px 15px 80px;
@@ -40,7 +41,7 @@ body {
  @media screen and (max-width: 768px) { 
     #bikePicture {
         width:90%;
-        margin-top:240px;
+        margin-top:300px;
         margin-left:30px;
     }
 }
