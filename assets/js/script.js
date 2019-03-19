@@ -122,11 +122,11 @@ $.ajax({
 
      }
       function clearMarkers() {
-      $(".limeMarker").hide();
+      marker.addMarkers(null);
       
       };
       function showMarkers() {
-      $(".limeMarker").show(); 
+        marker.setMap();
       };
 
       // Removes the markers from the map, but keeps them in the array. NOT WORKING
