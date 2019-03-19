@@ -18,7 +18,7 @@ getLocation();
 
 // Google map api init. Default is UW Continuing Ed but should get overwritten by user position later. For performance reasons we might try to just center on user position from the jump.
 function initMap () {
-  const home  = {lat: 47.609189, lng: -122.334249};
+  const home  = {lat: 47.60918, lng: -122.33424};
   const mapOptions = {
     zoom: 17,
     center: home
