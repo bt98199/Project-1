@@ -112,10 +112,11 @@ getLocation();
         });
       });
   }
-// =======================================================================
-
-
-
+// =======================Adds the bike paths================================================
+function getBikeLayer() {
+  var bikeLayer = new google.maps.BicyclingLayer();
+  bikeLayer.setMap(map)
+};
 //  ==========Setting google approved style parameter modifications======
   function styleMap() {
     return([
@@ -204,13 +205,44 @@ getLocation();
     zoom: 15,
     center: new google.maps.LatLng(47.60918,-122.33424),
     mapTypeId: "terrain",
-    styles: styleMap()
+    styles: styleMap(),
   });
+
+
+  function clearMarkers() {
+    $(".limeMarker").hide();
+    
+    };
+  function showMarkers() {
+    $(".limeMarker").show(); 
+    };
+  function showMarkers() {
+      $(".limeMarker").show(); 
+      };
+    
+  // Removes the markers from the map, but keeps them in the array. NOT WORKING
+  $("#clear-markers").on("click", function() {
+      clearMarkers();
+    });
+    
+  // Shows any markers currently in the array.
+  $("#show-markers").on("click", function() {
+      showMarkers();
+    });
+
+  // Shows any markers currently in the array.
+  $("#show-weather").on("click", function() {
+    $('.weather-section').append("<p> Weather info goes here!!</p>");
+  });
+
+
+
+
+
+
 
   getData();
   geolocateUser();
-
+  getBikeLayer();
 
 });
-// var bikeLayer = new google.maps.BicyclingLayer();
-// bikeLayer.setMap(map);
