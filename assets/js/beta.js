@@ -51,7 +51,7 @@ getLocation();
       position: location,
       map: map,
       icon: {
-        url: "./assets/images/bike2.png",
+        url: (parseInt(batteryLevel) >=50) ? "./assets/images/bike1.png":"./assets/images/bike2.png",
         scaledSize: new google.maps.Size(20,20)
       },
       opacity: 0.7,
@@ -69,7 +69,7 @@ getLocation();
         '<div id="content">' +
         '<div id="siteNotice">' +
         '</div>' +
-        '<h3 id="firstHeading" class="firstHeading">' + this.stationDetails.bikeName + '</h3>' +
+        '<p id="firstHeading" class="firstHeading"> Bike Number: ' + this.stationDetails.bikeName + '</p>' +
         '<div id="bodyContent">' +
         '<ul>' +
         '<li>Battery Level: ' + this.stationDetails.batteryLevel + '</li>' +
@@ -84,16 +84,17 @@ getLocation();
   }
 
   //  ==========Draw a "How far I'm willing to walk." Radius in meters (those frogs)========
-  function drawCircle() {
+  let walkRadius = 400;
+  function drawCircle(radius) {
     new google.maps.Circle({
-      strokeColor: '#FF0000',
+      strokeColor: '#d5d39a',
       strokeOpacity: 0.8,
       strokeWeight: 2,
-      fillColor: '#FF0000',
-      fillOpacity: 0.35,
+      fillColor: 'orange',
+      fillOpacity: 0.25,
       map: map,
       center: map.center,
-      radius: 1000
+      radius: radius
     });
   }
 
@@ -101,7 +102,7 @@ getLocation();
     navigator.geolocation.getCurrentPosition(
       function(position) {
         map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-        drawCircle();
+        drawCircle(walkRadius);
         var marker = new google.maps.Marker({
           position:{
             lat: position.coords.latitude,
@@ -202,7 +203,7 @@ function getBikeLayer() {
   }
 
   const map = new google.maps.Map(document.getElementById("map-section"), {
-    zoom: 15,
+    zoom: 16,
     center: new google.maps.LatLng(47.60918,-122.33424),
     mapTypeId: "terrain",
     styles: styleMap(),
@@ -216,10 +217,21 @@ function getBikeLayer() {
   function showMarkers() {
     $(".limeMarker").show(); 
     };
+  
   function showMarkers() {
-      $(".limeMarker").show(); 
-      };
-    
+    $(".limeMarker").show(); 
+    };
+   
+    $("#radius-input").on("click", function(event) {
+      event.preventDefault();
+      drawCircle.setMap(null);
+      userRadius = $("#walk-radius").val().trim();
+      drawCircle(parseInt(userRadius));
+    });
+
+
+
+
   // Removes the markers from the map, but keeps them in the array. NOT WORKING
   $("#clear-markers").on("click", function() {
       clearMarkers();
@@ -234,6 +246,7 @@ function getBikeLayer() {
   $("#show-weather").on("click", function() {
     $('.weather-section').append("<p> Weather info goes here!!</p>");
   });
+
 
 
 
