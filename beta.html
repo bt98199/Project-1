@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+    <title>Jump Bikes & Trails</title>
+  <!--------------------------Style & Script-------------------------->
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbV-NWGWD33N9oViXP9PQ_LF_CYNj2q-E"></script>
+    <script src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCzA6eNY5dXXMH3_ubVnD3UeT-d-vBMAGw"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="./assets/js/beta.js" charset="utf-8"></script>
+    <script src="./assets/js/geolocation-marker.js"></script>
+  </head>
+  <body>
+
+
+    <div class="header-bar"></div>
+    <div id="floating-panel">
+      <input id="clear-markers" type=button value="Hide Markers (NOT WORKING YET">
+      <input id="show-markers" type=button value="Show All Markers NOT WORKING YET">
+    </div>  
+    <div id="map-section" class="container">
+        </div>
+        <div id="last-updated"></div>
+        <div id="current-location"></div>
+        <div>Shaded circle shows adjustable area of "willing to walk" distance.  Default is 1000 meters (about 10 minutes walk on flat ground)</div>
+
+  </body>
+  </html>
