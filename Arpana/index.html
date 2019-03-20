@@ -2,16 +2,52 @@
      <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css" />
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/style.css" />
         <title> Weather </title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-     </head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js" integrity="sha256-1hjUhpc44NwiNg8OwMu2QzJXhD8kcj+sJA3aCQZoUjg=" crossorigin="anonymous"></script>
+        <script src="assets/javascript/app.js"></script> 
+    </head>
 
      <body>
-        <h1><div id="temp"></div><div id="minutely"></div></h1>
-        <h2><div id="location"></div></h2>
-        <img id = "image">
-        <div id="hourly"></div>
-     </body>
-     <script src="app.js"></script>
-  </html>
+       
+  <div id="location"></div>
+  <div class="container">
+    <div class="jumbotron text-center font-weight-bold">
+      <h1 class="text-center" id="heading">Weather Today</h1>
+      <h2 class="text-center" id="currentTime"></h2>
+      <h2 class="text-center" id="currentTemp"></h2>
+      <p class="text-center" id="currentSummary"></p>
+      <img id = "image">
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 bg-primary text-light p-0 p-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Hourly</h3>
+          </div>
+          <div class="panel-body">
+            <table class="table table-hover table-striped text-light" id="hourly-table">
+              <!-- <thead>
+                <tr>
+                  <th>Train Name</th>
+                  <th>Destination</th>
+                  <th class="text-center">Frequency</th>
+                  <th class="text-center">Next Arrival</th>
+                  <th class="text-center">Minutes Away</th>
+                  <th class="text-center">Remove</th>
+                </tr>
+              </thead> -->
+              <tbody id="hourly-table-rows" >
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </body>
+     
+    </html>

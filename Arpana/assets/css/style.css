@@ -11,3 +11,7 @@ html {
   h2 {
     font-weight: 300;
   }
+  .jumbotron{
+background-color: blue;
+color: white;
+  }
