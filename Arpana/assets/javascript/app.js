@@ -99,6 +99,8 @@ $(document).ready(function()
 
            var newClassname = "fas"+" "+namedClass;
            $("i").addClass(newClassname);
+           
+           $("i").addClass("animated infinite rollIn");
            // $("i").attr("class", newClassname);
            var classname = $("i").attr("class");
            //console.log("class-name"+classname);

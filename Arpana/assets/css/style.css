@@ -20,9 +20,17 @@ html {
   .fas{
     font-size:45px;
     color:yellow;
+    animation-duration: 3s;
   }
 
   td{
     height: 100px;
   }
+
+  /* i {
+
+    animation-duration: 10s;
+    /* animation-delay: 6s; */
+    /* animation-iteration-count: infinite; */
+  /* }   */
   
