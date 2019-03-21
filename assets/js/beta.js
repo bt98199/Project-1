@@ -224,7 +224,6 @@ function getBikeLayer() {
    
     $("#radius-input").on("click", function(event) {
       event.preventDefault();
-      drawCircle.setMap(null);
       userRadius = $("#walk-radius").val().trim();
       drawCircle(parseInt(userRadius));
     });
