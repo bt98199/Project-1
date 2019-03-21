@@ -176,15 +176,14 @@ function getBikeLayer() {
   }
 //  ======== This is the field validation for the walk radius input screen ("#radius-input"), will check that it is a number and not larger than 10 km ====
 function checkRadInput() {
-  
-}
-
-
-
-
-
-
-
+    var rad =document.forms["adjust-radius"]["radius"].value;
+    if (isNaN(rad)) 
+    {
+      $("#walking-radius").html( "<span>Please enter a number in the field.</span>" );
+    } else if (rad >= 10000) {
+      $("#walking-radius").html( "<p style='color:red;'><strong>Please enter a walking distance less than 10 kilometers</strong></p>" );
+    }
+  }
   // ====== Still working on this one.  The idea is to clear away the markers once a bike is secured to ease in navigation ====-==
   function clearMarkers() {
     $(".limeMarker").hide();
@@ -200,6 +199,7 @@ function checkRadInput() {
 // ==== Here is our button functionality   
     $("#radius-input").on("click", function() {
       event.preventDefault();
+      checkRadInput();
       console.log("old radius: "+ userRadius);
       userRadius = parseInt($("#walk-radius").val().trim());
       drawCircle();
