@@ -12,7 +12,7 @@
     <script src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCzA6eNY5dXXMH3_ubVnD3UeT-d-vBMAGw"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="./assets/js/beta.js" charset="utf-8"></script>
-    <script src="./assets/js/geolocation-marker.js"></script>
+ 
   </head>
   <body>
 
@@ -27,7 +27,11 @@
         </div>
     <div id="last-updated"></div>
     <div id="current-location"></div>
-    <div id="instructions">Shaded circle shows adjustable area of "willing to walk" distance.  Default is 1000 meters (about 10 minutes walk on flat ground)</div>
+    <form>
+      <input type="field" id= "walk-radius" value="400">
+      <button type="button" class="btn btn-dark" id = "radius-input">Set Walking Radius (meters)</button>
+    </form>
+    <div id="instructions">Shaded circle shows adjustable area of "willing to walk" distance.  Default is 400 meters (about 5 minute walk on flat ground0)</div>
     <div id="walking-radius">Walking distance desired goes here</div>
     <div class="weather-section">Its weather!</div>
 
