@@ -89,7 +89,7 @@ $.ajax({
           });
       };
       addMarkers(results[i]);
-      console.log(results[i]);
+      // console.log(results[i]);
     };
     $("#last-updated").append("  Last updated: " + moment(datResults*1000).format('LLL'));
   });
