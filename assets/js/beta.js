@@ -16,7 +16,13 @@ $(() => {
     showLoc.innerHTML = "Your Lat: " + position.coords.latitude + 
     "     ||     " + "Your Long: " + position.coords.longitude;
   }
-getLocation();
+
+
+
+
+
+
+
   // =======================================================================
   
   function getData() {
@@ -84,35 +90,65 @@ getLocation();
   }
 
   //  ==========Draw a "How far I'm willing to walk." Radius in meters (those frogs)========
-  let walkRadius = 400;
-  function drawCircle(radius) {
-    new google.maps.Circle({
-      strokeColor: '#d5d39a',
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: 'orange',
-      fillOpacity: 0.25,
-      map: map,
-      center: map.center,
-      radius: radius
-    });
-  }
+  // let walkRadius = 400;
+  // function drawCircle(radius) {
+  //   var walkCircle = new google.maps.Circle({
+  //     strokeColor: '#d5d39a',
+  //     strokeOpacity: 0.8,
+  //     strokeWeight: 2,
+  //     fillColor: 'orange',
+  //     fillOpacity: 0.25,
+  //     map: map,
+  //     center: map.center,
+  //     radius: radius
+  //   });
+  // }
+
+  var userRadius = 400;
+
+ 
+  
+
+
+
 
   function geolocateUser() {
     navigator.geolocation.getCurrentPosition(
       function(position) {
         map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-        drawCircle(walkRadius);
-        var marker = new google.maps.Marker({
+        marker = new google.maps.Marker({
           position:{
             lat: position.coords.latitude,
             lng: position.coords.longitude
           },
           map: map,
           icon: "./assets/images/VpVF8.png"
+        })
+       })
+  };
+  function initCircle() {
+    navigator.geolocation.getCurrentPosition(
+      function(position) {     
+        googCircle = new google.maps.Circle({
+          strokeColor: '#d5d39a',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: 'orange',
+          fillOpacity: 0.25,
+          map: map,
+          center: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          },
+          radius: userRadius
         });
-      });
-  }
+        googCircle.setMap(map);
+      })
+    };
+
+
+      
+
 // =======================Adds the bike paths================================================
 function getBikeLayer() {
   var bikeLayer = new google.maps.BicyclingLayer();
@@ -210,6 +246,15 @@ function getBikeLayer() {
   });
 
 
+
+
+  function drawCircle() {
+    googCircle.setMap(null)
+    console.log("New User Radius: " + userRadius);
+    initCircle();
+  }
+
+
   function clearMarkers() {
     $(".limeMarker").hide();
     
@@ -222,10 +267,11 @@ function getBikeLayer() {
     $(".limeMarker").show(); 
     };
    
-    $("#radius-input").on("click", function(event) {
+    $("#radius-input").on("click", function() {
       event.preventDefault();
-      userRadius = $("#walk-radius").val().trim();
-      drawCircle(parseInt(userRadius));
+      console.log("old radius: "+ userRadius);
+      userRadius = parseInt($("#walk-radius").val().trim());
+      drawCircle();
     });
 
 
@@ -252,9 +298,10 @@ function getBikeLayer() {
 
 
 
-
+  getLocation();
   getData();
   geolocateUser();
+  initCircle();
   getBikeLayer();
 
 });
