@@ -92,12 +92,10 @@ body {
 	background-size: cover;
 }
 
-.weather-section {
+/* .weather-section {
     min-height: 10px;
     border: 1px #d5d39a solid;
-}
-
-
+} */
 
 #floating-panel {
 	position: absolute;
