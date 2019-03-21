@@ -16,6 +16,7 @@ body {
   }
    h1 {
        font-size: 64px;
+       color: white
    }
   #bikePicture {
       width: 400px;
@@ -25,6 +26,7 @@ body {
       margin-bottom: 20px
   }
  #startButton {
+     color: white;
      padding: 15px 80px 15px 80px;
      margin-left: 60px;
      background-color: rgb(121, 123, 245);

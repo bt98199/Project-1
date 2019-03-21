@@ -1,4 +1,14 @@
 $(document).ready(function() {
+  $("#startButton").mousemove(function() {
+    $("#startButton").animate({
+      color:"purple",
+      backgroundColor: "rgb(6, 241, 241)"
+    });
+    $("h1").animate({
+      color:"purple",
+      backgroundColor: "rgb(6, 241, 241)"
+    });
+  });
 
   var showLoc = document.getElementById("current-location");
 
