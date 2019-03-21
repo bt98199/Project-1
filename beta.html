@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/animate.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbV-NWGWD33N9oViXP9PQ_LF_CYNj2q-E"></script>
     <script src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCzA6eNY5dXXMH3_ubVnD3UeT-d-vBMAGw"></script>
@@ -30,9 +31,9 @@
     <div id="current-location"></div>
     <form name="adjust-radius">
       <input type="text" id= "walk-radius" name = 'radius' value="400">
-      <button type="button" class="btn btn-dark" id = "radius-input">Set Walking Radius (meters)</button>
+      <button type="button" class="btn btn-dark bounceInDown" id = "radius-input">Set Walking Radius (meters)</button>
     </form>
-    <div id="instructions">Shaded circle shows adjustable area of "willing to walk" distance.  Default is 400 meters (about 5 minute walk on flat ground0)</div>
+    <div id="instructions">Shaded circle shows adjustable area of "willing to walk" distance.  Default is 400 meters (about 5 minute walk on flat ground)</div>
     <div id="walking-radius"></div>
     <!-- <div class="weather-section">Its weather!</div>
     

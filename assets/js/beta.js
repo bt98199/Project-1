@@ -13,7 +13,7 @@ $(() => { // Why this functions same as $(document).ready(function() {}); I have
   function showPosition(position) {
     showLoc.innerHTML = "Your Lat: " + position.coords.latitude + 
     "     ||     " + "Your Long: " + position.coords.longitude;
-  }
+      };
   // ==================Getting Data and updating last updated entry on web page=====================================================
   function getData() {
     $.ajax({
@@ -31,7 +31,7 @@ $(() => { // Why this functions same as $(document).ready(function() {}); I have
           var bikeLong = parseInt(100000*results[i].lon) / 100000;
           addMarkers (bikeLat, bikeLong, bikeName,batteryLevel, bikeId);
         };
-      $("#last-updated").append("  Last updated: " + moment(lastUpdated*1000).format('LLL'));
+      $("#last-updated").append("  Last updated: " + moment(lastUpdated*1000).format('LLL') + '    ' + "<img src='./assets/images/bike1.png' style='max-height:15px'>  = Bikes that have greater than 50% battery charge");
       }); 
     }
 // ==================Dropping all the bike markers, with red hued bikes "low" battery and green hued bikes "high" battery====
@@ -181,8 +181,11 @@ function checkRadInput() {
     {
       $("#walking-radius").html( "<span>Please enter a number in the field.</span>" );
     } else if (rad >= 10000) {
-      $("#walking-radius").html( "<p style='color:red;'><strong>Please enter a walking distance less than 10 kilometers</strong></p>" );
-    }
+      $("#walking-radius").html( "<span>Please enter a walking distance less than 10 kilometers</strong></span>" );
+      userRadius = 50;
+    } else {
+      $("#walking-radius").html( "" );
+    } 
   }
   // ====== Still working on this one.  The idea is to clear away the markers once a bike is secured to ease in navigation ====-==
   function clearMarkers() {
@@ -199,9 +202,9 @@ function checkRadInput() {
 // ==== Here is our button functionality   
     $("#radius-input").on("click", function() {
       event.preventDefault();
-      checkRadInput();
       console.log("old radius: "+ userRadius);
       userRadius = parseInt($("#walk-radius").val().trim());
+      checkRadInput();
       drawCircle();
     });
 
@@ -213,9 +216,11 @@ function checkRadInput() {
       showMarkers();
     });
 
+  getLocation();
   getData();
   geolocateUser();
   initCircle();
   getBikeLayer();
+
 
 });
