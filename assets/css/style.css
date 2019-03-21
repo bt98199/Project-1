@@ -61,11 +61,19 @@ body {
   }
 }
 
-.labels {
-	color:#000000;
-	font-weight: bold;
-	font-size: 1em;
-}
+.btn-dark {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+    font: "Times New Roman";
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .btn-dark:hover {
+    color: #fff;
+    background-color: #23272b;
+    border-color: #1d2124;
+  }
 
 #map-section{
 	width: 100%;
@@ -79,7 +87,7 @@ body {
 
 .weather-section {
     min-height: 10px;
-    border: 1px green solid;
+    border: 1px #d5d39a solid;
 }
 
 #walking-radius {
