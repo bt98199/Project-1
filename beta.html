@@ -21,19 +21,21 @@
     <div id="floating-panel">
       <input id="clear-markers" type = button value="Hide Markers (NOT WORKING)">
       <input id="show-markers" type = button value="Show All Markers (NOT WORKING)">
-      <input id="show-weather" type = button value="Show Weather">
+      <!-- Redirecting to Weather page on clicking weather button -->
+      <input id="show-weather" type = button value="Show Weather" onClick= "location.href='Arpana/index.html'">
     </div>  
     <div id="map-section" class="container">
         </div>
     <div id="last-updated"></div>
     <div id="current-location"></div>
-    <form>
-      <input type="field" id= "walk-radius" value="400">
+    <form name="adjust-radius">
+      <input type="text" id= "walk-radius" name = 'radius' value="400">
       <button type="button" class="btn btn-dark" id = "radius-input">Set Walking Radius (meters)</button>
     </form>
     <div id="instructions">Shaded circle shows adjustable area of "willing to walk" distance.  Default is 400 meters (about 5 minute walk on flat ground0)</div>
-    <div id="walking-radius">Walking distance desired goes here</div>
-    <div class="weather-section">Its weather!</div>
+    <div id="walking-radius"></div>
+    <!-- <div class="weather-section">Its weather!</div>
+    
 
 
 

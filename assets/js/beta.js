@@ -1,7 +1,5 @@
-/* global google:ignore */
-
-$(() => {
-  // Shows the location to the user.  This is for testing and nice to know info and adds too much bloat to the code to be of use.  Will either find a way to just do this in HTML5 (should be easy enough) or comment out for deployment purposes========================
+$(() => { // Why this functions same as $(document).ready(function() {}); I have no idea.
+  // Shows the location to the user on the website. I have way too many geolocation calls.  I would think there only needs to be one.  need to tweak this for cleaner more svelte code========================
   var showLoc = document.getElementById("current-location");
 
   function getLocation() {
@@ -16,9 +14,7 @@ $(() => {
     showLoc.innerHTML = "Your Lat: " + position.coords.latitude + 
     "     ||     " + "Your Long: " + position.coords.longitude;
   }
-getLocation();
-  // =======================================================================
-  
+  // ==================Getting Data and updating last updated entry on web page=====================================================
   function getData() {
     $.ajax({
       url: "https://sea.jumpbikes.com/opendata/free_bike_status.json",
@@ -38,9 +34,7 @@ getLocation();
       $("#last-updated").append("  Last updated: " + moment(lastUpdated*1000).format('LLL'));
       }); 
     }
-
-
-
+// ==================Dropping all the bike markers, with red hued bikes "low" battery and green hued bikes "high" battery====
   function addMarkers(bikeLat, bikeLong, bikeName,batteryLevel, bikeId) {
     const location = {
       lat: bikeLat,
@@ -54,15 +48,14 @@ getLocation();
         url: (parseInt(batteryLevel) >=50) ? "./assets/images/bike1.png":"./assets/images/bike2.png",
         scaledSize: new google.maps.Size(20,20)
       },
-      opacity: 0.7,
+      opacity: 0.85,
       stationDetails: {
         bikeName: bikeName,
         batteryLevel: batteryLevel,
         bikeId: bikeId
       }
     });
-    
-
+ // ===========Setting the listener which allows pop ups on the map to show bike ID, Bike Number, and Battery Level.  I originally used label to show the battery level but this destroyed performance===  
     marker.addListener('click', function() {
       const infowindow = new google.maps.InfoWindow({
         content: '' +
@@ -78,138 +71,120 @@ getLocation();
         '</div>' +
         '</div>'
       });
-
       infowindow.open(map, this);
     });
   }
-
-  //  ==========Draw a "How far I'm willing to walk." Radius in meters (those frogs)========
-  let walkRadius = 400;
-  function drawCircle(radius) {
-    new google.maps.Circle({
-      strokeColor: '#d5d39a',
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: 'orange',
-      fillOpacity: 0.25,
-      map: map,
-      center: map.center,
-      radius: radius
-    });
-  }
-
+////  =====Use Geolocation to find the user and drop a blue icon for position, also use current location to center the "Walk Radius" circle.  It has a default of 400 meters but is adjustable by the user===
+  var userRadius = 400;
   function geolocateUser() {
     navigator.geolocation.getCurrentPosition(
       function(position) {
         map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-        drawCircle(walkRadius);
-        var marker = new google.maps.Marker({
+        marker = new google.maps.Marker({
           position:{
             lat: position.coords.latitude,
             lng: position.coords.longitude
           },
           map: map,
           icon: "./assets/images/VpVF8.png"
+        })
+       })
+  };
+
+  function initCircle() {
+    navigator.geolocation.getCurrentPosition(
+      function(position) {     
+        googCircle = new google.maps.Circle({
+          strokeColor: '#d5d39a',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: 'orange',
+          fillOpacity: 0.25,
+          map: map,
+          center: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          },
+          radius: userRadius
         });
-      });
-  }
-// =======================Adds the bike paths================================================
+        googCircle.setMap(map);
+      })
+    };
+// =======================Adds the bike paths (might like to try and tweek the style map so they are easier to see)================================================
 function getBikeLayer() {
   var bikeLayer = new google.maps.BicyclingLayer();
   bikeLayer.setMap(map)
 };
-//  ==========Setting google approved style parameter modifications======
+//  ==========Setting google approved style parameter modifications.  Hide a lot of the clutter======
   function styleMap() {
     return([
       {
-        'featureType': 'administrative',
-        'elementType': 'labels.text.fill',
-        'stylers': [
-          {
-            'color': '#444444'
-          }
+        'featureType': 'administrative','elementType': 'labels.text.fill','stylers': [
+          {'color': '#444444'}
         ]
       },
       {
-        'featureType': 'landscape',
-        'elementType': 'all',
-        'stylers': [
-          {
-            'color': '#f2f2f2'
-          }
+        'featureType': 'landscape','elementType': 'all','stylers': [
+          {'color': '#f2f2f2'}
         ]
       },
       {
-        'featureType': 'poi',
-        'elementType': 'all',
-        'stylers': [
-          {
-            'visibility': 'off'
-          }
+        'featureType': 'poi','elementType': 'all','stylers': [
+          {'visibility': 'off'}
+        ]
+      },
+      {'featureType': 'road','elementType': 'all','stylers': [
+          {'saturation': -100},
+          {'lightness': 45}
         ]
       },
       {
-        'featureType': 'road',
-        'elementType': 'all',
-        'stylers': [
-          {
-            'saturation': -100
-          },
-          {
-            'lightness': 45
-          }
+        'featureType': 'road.highway','elementType': 'all','stylers': [
+          {'visibility': 'simplified'}
         ]
       },
       {
-        'featureType': 'road.highway',
-        'elementType': 'all',
-        'stylers': [
-          {
-            'visibility': 'simplified'
-          }
+        'featureType': 'road.arterial','elementType': 'labels.icon','stylers': [
+          {'visibility': 'off'}
         ]
       },
       {
-        'featureType': 'road.arterial',
-        'elementType': 'labels.icon',
-        'stylers': [
-          {
-            'visibility': 'off'
-          }
+        'featureType': 'transit','elementType': 'all','stylers': [
+          {'visibility': 'off'}
         ]
       },
       {
-        'featureType': 'transit',
-        'elementType': 'all',
-        'stylers': [
-          {
-            'visibility': 'off'
-          }
-        ]
-      },
-      {
-        'featureType': 'water',
-        'elementType': 'all',
-        'stylers': [
-          {
-            'color': '#77738c'
-          },
-          {
-            'visibility': 'on'
-          }
+        'featureType': 'water','elementType': 'all','stylers': [
+          {'color': '#77738c'},
+          {'visibility': 'on'}
         ]
       }
     ]);
   }
-
+//=====Sets up the canvas of our work, the Google map============
   const map = new google.maps.Map(document.getElementById("map-section"), {
     zoom: 16,
     center: new google.maps.LatLng(47.60918,-122.33424),
     mapTypeId: "terrain",
     styles: styleMap(),
   });
-
-
+//=======  Draws the walking radius circle (clears the previous circle first if this is a redraw)=========
+  function drawCircle() {
+    googCircle.setMap(null)
+    console.log("New User Radius: " + userRadius);
+    initCircle();
+  }
+//  ======== This is the field validation for the walk radius input screen ("#radius-input"), will check that it is a number and not larger than 10 km ====
+function checkRadInput() {
+    var rad =document.forms["adjust-radius"]["radius"].value;
+    if (isNaN(rad)) 
+    {
+      $("#walking-radius").html( "<span>Please enter a number in the field.</span>" );
+    } else if (rad >= 10000) {
+      $("#walking-radius").html( "<p style='color:red;'><strong>Please enter a walking distance less than 10 kilometers</strong></p>" );
+    }
+  }
+  // ====== Still working on this one.  The idea is to clear away the markers once a bike is secured to ease in navigation ====-==
   function clearMarkers() {
     $(".limeMarker").hide();
     
@@ -221,40 +196,26 @@ function getBikeLayer() {
   function showMarkers() {
     $(".limeMarker").show(); 
     };
-   
-    $("#radius-input").on("click", function(event) {
+// ==== Here is our button functionality   
+    $("#radius-input").on("click", function() {
       event.preventDefault();
-      userRadius = $("#walk-radius").val().trim();
-      drawCircle(parseInt(userRadius));
+      checkRadInput();
+      console.log("old radius: "+ userRadius);
+      userRadius = parseInt($("#walk-radius").val().trim());
+      drawCircle();
     });
 
-
-
-
-  // Removes the markers from the map, but keeps them in the array. NOT WORKING
   $("#clear-markers").on("click", function() {
       clearMarkers();
     });
     
-  // Shows any markers currently in the array.
   $("#show-markers").on("click", function() {
       showMarkers();
     });
 
-  // Shows any markers currently in the array.
-  $("#show-weather").on("click", function() {
-    $('.weather-section').append("<p> Weather info goes here!!</p>");
-  });
-
-
-
-
-
-
-
-
   getData();
   geolocateUser();
+  initCircle();
   getBikeLayer();
 
 });
