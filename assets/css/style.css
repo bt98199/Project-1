@@ -10,6 +10,13 @@ body {
       font-weight: bold;
   }
 
+  #walking-radius {
+      color: red;
+      font-weight: bold;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 1.5em;
+  }
+
   video { 
       position: fixed;
       top: 50%;
@@ -90,15 +97,11 @@ body {
     border: 1px #d5d39a solid;
 }
 
-#walking-radius {
-    min-height: 10px;
-    border: 1px green solid;
-}
 
 
 #floating-panel {
 	position: absolute;
-	top: 10px;
+	top: 30px;
 	left: 25%;
 	z-index: 5;
 	background-color: #fff;
