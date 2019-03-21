@@ -212,12 +212,7 @@ function checkRadInput() {
   $("#show-markers").on("click", function() {
       showMarkers();
     });
-//  =====Placeholder to dump weather forecast info in the weather section id of the map page======
-  $("#show-weather").on("click", function() {
-    $('.weather-section').append("<p> Weather info goes here!!</p>");
-  });
-//==== All these f() fire off on page load =========
-  getLocation();
+
   getData();
   geolocateUser();
   initCircle();
