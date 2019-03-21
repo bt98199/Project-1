@@ -11,13 +11,18 @@ html {
   h2 {
     font-weight: 300;
   }
+
   .jumbotron{
-background-color: blue;
-color: white;
+  background-color: blue;
+  color: white;
   }
 
   .fas{
-    font-size:35px;
+    font-size:45px;
     color:yellow;
+  }
+
+  td{
+    height: 100px;
   }
   
