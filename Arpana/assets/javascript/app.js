@@ -1,7 +1,7 @@
 $(document).ready(function()
 {
 
-    var i, x,y,z,xTime="";
+    var i, x,y,z,xTime, namedClass="=";
     weather();
 
 function weather() {
@@ -36,11 +36,59 @@ function weather() {
             xTime = moment(x).format("LT");
             y = data.hourly.data[i].temperature ;
             z= data.hourly.data[i].summary ;
+            w = data.hourly.data[i].icon ;
 
             var newrow = $("<tr>");
             newrow.append($("<td>" + xTime + "</td>"));
             newrow.append($("<td>" + y + "</td>"));
             newrow.append($("<td>" + z + "</td>"));
+
+
+            //Getting icon for hourly status
+            
+           
+switch (w) {
+  case "clear-day":
+    namedClass= "fa-sun";
+    break;
+  case "clear-night":
+  namedClass= "fa-moon";
+    break;
+  case "rain":
+  namedClass= "fa-cloud-showers-heavy";
+    break;
+  case "sleet":
+  namedClass= "fa-cloud-meatball";
+    break;
+  case "wind":
+  namedClass= "fa-wind";
+    break;
+  case "fog":
+  namedClass= "fa-smog";
+    break;
+  case  "cloudy":
+  namedClass= "fa-cloud";
+    break;
+    case "partly-cloudy-day":
+    namedClass= "fa-cloud-sun";
+    break;
+  case "partly-cloudy-night":
+  namedClass= "fa-cloud-moon";
+    break;
+
+}
+var newicon = $("<i>");
+newrow.append(newicon);
+
+var newClassname = "fas"+" "+namedClass;
+
+$("i").addClass(newClassname);
+var classname = $("i").attr("class");
+console.log(classname);
+
+
+
+           // newrow.append($("<td>" + newicon + "</td>"));
           
         //   $("#hourly").html(x);
         $("#hourly-table-rows").append(newrow);

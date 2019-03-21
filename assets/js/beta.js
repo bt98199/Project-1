@@ -242,9 +242,10 @@ function getBikeLayer() {
     });
 
   // Shows any markers currently in the array.
-  $("#show-weather").on("click", function() {
-    $('.weather-section').append("<p> Weather info goes here!!</p>");
-  });
+  // $("#show-weather").on("click", function() {
+  //   $('.weather-section').append("<p> Weather info goes here!!</p>");
+    
+  // });
 
 
 
