@@ -1,57 +1,63 @@
 <html>
-     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- fontAwesome cdn -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-        
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/style.css" />
-        <title> Weather </title>
-         
-         
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js" integrity="sha256-1hjUhpc44NwiNg8OwMu2QzJXhD8kcj+sJA3aCQZoUjg=" crossorigin="anonymous"></script>
-        <script src="assets/javascript/app.js"></script> 
-    </head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- fontAwesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- Bootstrap CDN    -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title> Weather </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!-- momentjs CDN     -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js" integrity="sha256-1hjUhpc44NwiNg8OwMu2QzJXhD8kcj+sJA3aCQZoUjg=" crossorigin="anonymous"></script>
+    <script src="assets/javascript/app.js"></script> 
+  </head>
 
-     <body>
-       
-  <div id="location"></div>
-  <div class="container">
-    <div class="jumbotron text-center font-weight-bold">
-      <h1 class="text-center" id="heading">Weather Today</h1>
-      <h2 class="text-center" id="currentTime"></h2>
-      <h2 class="text-center" id="currentTemp"></h2>
-      <p class="text-center" id="currentSummary"></p>
-      <!-- <i class='fas fa-cloud-moon'></i> -->
+  <body>
+    <div id="location">
+
     </div>
-
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 bg-primary text-light p-0 p-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Hourly</h3>
-          </div>
-          <div class="panel-body">
-            <table class="table table-hover table-striped text-light" id="hourly-table">
-              <!-- <thead>
-                <tr>
-                  <th>Train Name</th>
-                  <th>Destination</th>
-                  <th class="text-center">Frequency</th>
-                  <th class="text-center">Next Arrival</th>
-                  <th class="text-center">Minutes Away</th>
-                  <th class="text-center">Remove</th>
-                </tr>
-              </thead> -->
-              <tbody id="hourly-table-rows" >
-              </tbody>
-            </table>
-          </div>
-        </div>
+    <div class="container">
+      <!-- jumbtron -->
+      <div class="jumbotron font-weight-bold">
+        <!-- Go to map button -->
+        <a href="../beta.html" class="btn btn-danger float-right animated infinite jello" role="button">Go to map</a>
+        <!-- <input id="show-map" type = button value="Go to map" class="text-right" onClick= "location.href='../beta.html'"> -->
+        <h1 class="text-center" id="heading">Weather Today</h1>
+        <h2 class="text-center" id="currentTime"></h2>
+        <h2 class="text-center" id="currentTemp"></h2>
+        <p class="text-center" id="currentSummary"></p>
+        <!-- <i class='fas fa-smog'></i>  -->
       </div>
-
+      <!-- Table -->
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 bg-primary text-light p-0 p-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Hourly</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-hover table-striped text-light " id="hourly-table">
+                <!-- <thead>
+                <tr>
+                <th>Train Name</th>
+                <th>Destination</th>
+                <th class="text-center">Frequency</th>
+                <th class="text-center">Next Arrival</th>
+                <th class="text-center">Minutes Away</th>
+                <th class="text-center">Remove</th>
+                </tr>
+               </thead> -->
+               <tbody id="hourly-table-rows" >
+               </tbody>
+             </table>
+            </div>
+          </div>
+       </div>
+      </div>
     </body>
      
-    </html>
+  </html>

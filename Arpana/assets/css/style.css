@@ -11,13 +11,26 @@ html {
   h2 {
     font-weight: 300;
   }
+
   .jumbotron{
-background-color: blue;
-color: white;
+  background-color: blue;
+  color: white;
   }
 
   .fas{
-    font-size:35px;
+    font-size:45px;
     color:yellow;
+    animation-duration: 3s;
   }
+
+  td{
+    height: 100px;
+  }
+
+  /* i {
+
+    animation-duration: 10s;
+    /* animation-delay: 6s; */
+    /* animation-iteration-count: infinite; */
+  /* }   */
   
