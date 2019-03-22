@@ -14,5 +14,10 @@ Team project for UW201902FT
     * used font Awesome 5 to access the weather icons since it wasn't provided by the Dark Sky API
     * Gave animations to buttons and icons using CSS library animate.css
 
+## Search 
+- Map is hard coded to Seattle lat long coordinates 
+- Users are able to perform a simple search using the Google Places API
+- Search bar will auto-fill with predictions of what the users might be looking for utilizing the Google places library
+
 
 *With thanks to http://suzeshardlow.com/boris_bikes/ for the framework of a cool, high performing map
