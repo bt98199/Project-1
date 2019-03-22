@@ -127,8 +127,6 @@ function getBikeLayer() {
       {
         'featureType': 'administrative','elementType': 'labels.text.fill','stylers': [
           {'color': '#444444'}
-          // {'color': '#bab7b7'}
-          
         ]
       },
       {
@@ -178,7 +176,7 @@ function getBikeLayer() {
   });
 //=======  Draws the walking radius circle (clears the previous circle first if this is a redraw)=========
   function drawCircle() {
-    googCircle.setMap(null)
+    googCircle.setMap(null);
     console.log("New User Radius: " + userRadius);
     initCircle();
   }
