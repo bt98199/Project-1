@@ -1,23 +1,43 @@
 html {
-    font-family: "Avenir Next", Helevetica, sans-serif;
-    text-align: center;
-  }
+  font-family: "Avenir Next", Helevetica, sans-serif;
+  text-align: center;
+}
   
-  body {
-    margin: 0 auto;
-  }
+body {
+  margin: 0 auto;
+}
   
-  h1,
-  h2 {
+h2 {
     font-weight: 300;
-  }
-  .jumbotron{
-background-color: blue;
-color: white;
-  }
+}
 
-  .fas{
-    font-size:35px;
-    color:yellow;
-  }
+.jumbotron{
+  background-color: blue;
+  color: white;
+}
+
+.fas{
+  font-size:45px;
+  color:yellow;
+  animation-duration: 3s;
+}
+
+td{
+  height: 100px;
+}
+  
+.currentDate{
+  float: left;
+}
+
+.currentTemp{
+  float: clear all;
+}
+
+/* i {
+
+  animation-duration: 10s;
+  /* animation-delay: 6s; */
+  /* animation-iteration-count: infinite; */
+/* }   */
   

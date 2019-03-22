@@ -41,7 +41,8 @@ $(() => { // Why this functions same as $(document).ready(function() {}); I have
       lng: bikeLong
     };
 
-    const marker = new google.maps.Marker({
+    const limeMarker = new google.maps.Marker({
+  
       position: location,
       map: map,
       icon: {
@@ -55,8 +56,9 @@ $(() => { // Why this functions same as $(document).ready(function() {}); I have
         bikeId: bikeId
       }
     });
+
  // ===========Setting the listener which allows pop ups on the map to show bike ID, Bike Number, and Battery Level.  I originally used label to show the battery level but this destroyed performance===  
-    marker.addListener('click', function() {
+    limeMarker.addListener('click', function() {
       const infowindow = new google.maps.InfoWindow({
         content: '' +
         '<div id="content">' +
@@ -96,7 +98,7 @@ $(() => { // Why this functions same as $(document).ready(function() {}); I have
       function(position) {     
         googCircle = new google.maps.Circle({
           strokeColor: '#d5d39a',
-          strokeOpacity: 0.8,
+          strokeOpacity: 0.25,
           strokeWeight: 2,
           fillColor: 'orange',
           fillOpacity: 0.25,
@@ -115,12 +117,18 @@ function getBikeLayer() {
   var bikeLayer = new google.maps.BicyclingLayer();
   bikeLayer.setMap(map)
 };
+//  ========================= Add Burke-Gilman Trail map ===========================
+// function drawBurkeGilman () {
+// }
+
 //  ==========Setting google approved style parameter modifications.  Hide a lot of the clutter======
   function styleMap() {
     return([
       {
         'featureType': 'administrative','elementType': 'labels.text.fill','stylers': [
           {'color': '#444444'}
+          // {'color': '#bab7b7'}
+          
         ]
       },
       {
@@ -187,18 +195,6 @@ function checkRadInput() {
       $("#walking-radius").html( "" );
     } 
   }
-  // ====== Still working on this one.  The idea is to clear away the markers once a bike is secured to ease in navigation ====-==
-  function clearMarkers() {
-    $(".limeMarker").hide();
-    
-    };
-  function showMarkers() {
-    $(".limeMarker").show(); 
-    };
-  
-  function showMarkers() {
-    $(".limeMarker").show(); 
-    };
 // ==== Here is our button functionality   
     $("#radius-input").on("click", function() {
       event.preventDefault();
@@ -208,19 +204,9 @@ function checkRadInput() {
       drawCircle();
     });
 
-  $("#clear-markers").on("click", function() {
-      clearMarkers();
-    });
-    
-  $("#show-markers").on("click", function() {
-      showMarkers();
-    });
-
   getLocation();
   getData();
   geolocateUser();
   initCircle();
   getBikeLayer();
-
-
 });

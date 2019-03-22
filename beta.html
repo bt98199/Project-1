@@ -6,6 +6,8 @@
   <!--------------------------Style & Script-------------------------->
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/animate.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -13,17 +15,13 @@
     <script src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCzA6eNY5dXXMH3_ubVnD3UeT-d-vBMAGw"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="./assets/js/beta.js" charset="utf-8"></script>
- 
+    
   </head>
   <body>
-
-
     <div class="header-bar"></div>
     <div id="floating-panel">
-      <input id="clear-markers" type = button value="Hide Markers (NOT WORKING)">
-      <input id="show-markers" type = button value="Show All Markers (NOT WORKING)">
-      <!-- Redirecting to Weather page on clicking weather button -->
       <input id="show-weather" type = button value="Show Weather" onClick= "location.href='Arpana/index.html'">
+      <input id="do-search" type = button value="Map Search" onClick= "location.href='search.html'">
     </div>  
     <div id="map-section" class="container">
         </div>
@@ -35,10 +33,5 @@
     </form>
     <div id="instructions">Shaded circle shows adjustable area of "willing to walk" distance.  Default is 400 meters (about 5 minute walk on flat ground)</div>
     <div id="walking-radius"></div>
-    <!-- <div class="weather-section">Its weather!</div>
-    
-
-
-
-  </body>
-  </html>
+</body>
+</html>

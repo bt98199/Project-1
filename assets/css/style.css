@@ -31,6 +31,7 @@ body {
   }
    h1 {
        font-size: 64px;
+       color: white
    }
   #bikePicture {
       width: 400px;
@@ -40,6 +41,7 @@ body {
       margin-bottom: 20px
   }
  #startButton {
+     color: white;
      padding: 15px 80px 15px 80px;
      margin-left: 60px;
      background-color: rgb(121, 123, 245);
@@ -84,7 +86,7 @@ body {
 
 #map-section{
 	width: 100%;
-	height: 700px;
+	height: 800px;
 	border-top: 8px solid black;
 	border-bottom: 8px solid black;
 	background-repeat: no-repeat;
@@ -98,11 +100,12 @@ body {
 } */
 
 #floating-panel {
-	position: absolute;
-	top: 30px;
-	left: 25%;
+    display: flex;
+    /* position: absolute; */
+	top: 10px;
+	justify-content: center;
 	z-index: 5;
-	background-color: #fff;
+	background-color: rgb(156, 244, 156);
 	padding: 5px;
 	border: 1px solid #999;
 	text-align: center;
