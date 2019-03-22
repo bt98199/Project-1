@@ -1,36 +1,43 @@
 html {
-    font-family: "Avenir Next", Helevetica, sans-serif;
-    text-align: center;
-  }
+  font-family: "Avenir Next", Helevetica, sans-serif;
+  text-align: center;
+}
   
-  body {
-    margin: 0 auto;
-  }
+body {
+  margin: 0 auto;
+}
   
-  h1,
-  h2 {
+h2 {
     font-weight: 300;
-  }
+}
 
-  .jumbotron{
+.jumbotron{
   background-color: blue;
   color: white;
-  }
+}
 
-  .fas{
-    font-size:45px;
-    color:yellow;
-    animation-duration: 3s;
-  }
+.fas{
+  font-size:45px;
+  color:yellow;
+  animation-duration: 3s;
+}
 
-  td{
-    height: 100px;
-  }
+td{
+  height: 100px;
+}
+  
+.currentDate{
+  float: left;
+}
 
-  /* i {
+.currentTemp{
+  float: clear all;
+}
 
-    animation-duration: 10s;
-    /* animation-delay: 6s; */
-    /* animation-iteration-count: infinite; */
-  /* }   */
+/* i {
+
+  animation-duration: 10s;
+  /* animation-delay: 6s; */
+  /* animation-iteration-count: infinite; */
+/* }   */
   
