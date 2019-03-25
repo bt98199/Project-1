@@ -2,8 +2,10 @@
 
 # Project-1
 Team project for UW201902FT
-
-
+## Jump Bike Locator
+- Jump bikes were found using the locator json uber provides as part of the bike sharing plan,
+- Data was plotting using the google maps api and the google geolocation api
+- Google has a bike path overlay, which we used
 
 
 ## Weather Section
